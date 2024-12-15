@@ -14,6 +14,9 @@ return {
           "lua_ls",
           "ts_ls",
           "dockerls",
+          "bashls",
+          "pylsp",
+          "cssls",
         },
       })
     end,
@@ -23,12 +26,12 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       -- Init language servers
-      lspconfig.lua_ls.setup({
-      })
-      lspconfig.ts_ls.setup({
-      })
-      lspconfig.dockerls.setup({
-      })
+      lspconfig.lua_ls.setup({})
+      lspconfig.ts_ls.setup({})
+      lspconfig.dockerls.setup({})
+      lspconfig.bashls.setup({})
+      lspconfig.pylsp.setup({})
+      lspconfig.cssls.setup({})
       -- Keybinds
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
