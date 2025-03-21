@@ -1,1 +1,4 @@
 tmux/plugins/*
+matplotlib/
+/helm
+/configstore
