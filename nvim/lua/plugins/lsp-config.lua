@@ -9,6 +9,7 @@ return {
     opts = {
       ensure_installed = {
         "html",
+        "jdtls",
         "typos_lsp",
         "cssls",
         "dockerls",
@@ -21,6 +22,9 @@ return {
         "volar",
       },
     },
+  },
+  { "nvim-java/nvim-java",
+    config = true,
   },
   {
     "neovim/nvim-lspconfig",
@@ -210,6 +214,11 @@ return {
         filetypes = { "html", "vue", "templ" },
       })
       lspconfig.cssls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        handlers = handlers,
+      })
+      lspconfig.jdtls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
