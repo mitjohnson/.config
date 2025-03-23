@@ -13,7 +13,6 @@ return {
 				formatting.stylua,
 				formatting.prettierd,
 				formatting.shfmt,
-				completion.spell,
 				require("none-ls.diagnostics.eslint_d"),
 			},
 		})
