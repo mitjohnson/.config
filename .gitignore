@@ -2,3 +2,6 @@ tmux/plugins/*
 matplotlib/
 /helm
 /configstore
+iterm2/
+p/
+op/
