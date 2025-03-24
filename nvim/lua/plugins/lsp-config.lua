@@ -9,6 +9,7 @@ return {
     opts = {
       ensure_installed = {
         "html",
+        "clangd",
         "jdtls",
         "typos_lsp",
         "cssls",
@@ -23,7 +24,8 @@ return {
       },
     },
   },
-  { "nvim-java/nvim-java",
+  {
+    "nvim-java/nvim-java",
     config = true,
   },
   {
@@ -85,6 +87,9 @@ return {
 
         opts.desc = "Reset LSP"
         vim.keymap.set("n", "<leader>rs", ":LspRestart<cr>", opts)
+
+        opts.desc = "Format code"
+        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
       end
 
       local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -122,7 +127,17 @@ return {
           })
         end,
         settings = {
-          Lua = {},
+          Lua = {
+            format = {
+              enable = true,
+              -- Put format options here
+              -- NOTE: the value should be String!
+              defaultConfig = {
+                indent_style = "space",
+                indent_size = "2",
+              }
+            }
+          },
         },
       })
       lspconfig.eslint.setup({
@@ -202,6 +217,17 @@ return {
           },
         },
       })
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        handlers = handlers,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--log=verbose",
+        },
+      })
       lspconfig.typos_lsp.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -211,7 +237,7 @@ return {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
-        filetypes = { "html", "vue", "templ" },
+        filetypes = { "html", "vue", "templ", "jsx", "svelte" },
       })
       lspconfig.cssls.setup({
         capabilities = capabilities,

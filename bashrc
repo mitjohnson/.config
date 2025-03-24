@@ -6,7 +6,7 @@ PS1='\[$(tput setaf 130)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 7)\]\h \[$(tput s
 # alias
 
 # Use NVIM
-alias vim="~/.local/bin/nvim-linux64/bin/nvim"
+alias nvim="~/.local/bin/nvim-linux64/bin/nvim"
 
 # custom bash behavior
 alias ls="ls --color=auto"
