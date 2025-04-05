@@ -9,8 +9,8 @@ return {
     opts = {
       ensure_installed = {
         "html",
+        "emmet_language_server",
         "clangd",
-        "jdtls",
         "typos_lsp",
         "cssls",
         "dockerls",
@@ -143,6 +143,38 @@ return {
       lspconfig.eslint.setup({
         handlers = handlers,
         on_attach = on_attach,
+        settings = {
+          codeAction = {
+            disableRuleComment = {
+              enable = true,
+              location = "separateLine"
+            },
+            showDocumentation = {
+              enable = true
+            }
+          },
+          codeActionOnSave = {
+            enable = false,
+            mode = "all"
+          },
+          experimental = {
+            useFlatConfig = false
+          },
+          format = true,
+          nodePath = "",
+          onIgnoredFiles = "off",
+          problems = {
+            shortenToSingleLine = false
+          },
+          quiet = false,
+          rulesCustomizations = {},
+          run = "onType",
+          useESLintClass = false,
+          validate = "on",
+          workingDirectory = {
+            mode = "location"
+          }
+        }
       })
       lspconfig.ts_ls.setup({
         handlers = handlers,
@@ -191,7 +223,7 @@ return {
         capabilities = capabilities,
         init_options = {
           vue = {
-            hybridMode = false,
+            hybridMode = true,
           },
         },
         settings = {
@@ -238,6 +270,11 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "html", "vue", "templ", "jsx", "svelte" },
+      })
+      lspconfig.emmet_language_server.setup({
+        handlers = handlers,
+        on_attach = on_attach,
+        capabilities = capabilities,
       })
       lspconfig.cssls.setup({
         capabilities = capabilities,
