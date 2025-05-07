@@ -1,16 +1,17 @@
 return {
   {
     "williamboman/mason.nvim",
+    version = "1.*",
     opts = {},
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
+    version = "1.*",
     opts = {
       ensure_installed = {
         "html",
         "emmet_language_server",
-        "clangd",
         "typos_lsp",
         "cssls",
         "dockerls",
@@ -23,10 +24,6 @@ return {
         "volar",
       },
     },
-  },
-  {
-    "nvim-java/nvim-java",
-    config = true,
   },
   {
     "neovim/nvim-lspconfig",
