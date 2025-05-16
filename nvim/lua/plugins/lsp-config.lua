@@ -36,33 +36,13 @@ return {
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local lspconfig = require("lspconfig")
 
-      local border = {
-        { "🭽", "FloatBorder" },
-        { "▔", "FloatBorder" },
-        { "🭾", "FloatBorder" },
-        { "▕", "FloatBorder" },
-        { "🭿", "FloatBorder" },
-        { "▁", "FloatBorder" },
-        { "🭼", "FloatBorder" },
-        { "▏", "FloatBorder" },
-      }
-
-      local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = border,
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-          border = border,
-        }),
-      }
-
       local opts = { noremap = true, silent = true }
 
       local on_attach = function(client, bufnr)
         opts.buffer = bufnr
 
         opts.desc = "Show Definition"
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "K", require('noice.lsp').hover, opts)
 
         opts.desc = "Show LSP References"
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
@@ -79,14 +59,17 @@ return {
         opts.desc = "Show buffer Diagnostics"
         vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
 
-        opts.desc = "Show line Diagnostics"
-        vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
         opts.desc = "Reset LSP"
         vim.keymap.set("n", "<leader>rs", ":LspRestart<cr>", opts)
 
         opts.desc = "Format code"
-        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
+        vim.keymap.set("n", "<leader>f", function()
+          if vim.tbl_contains({ "javascript", "typescript", "vue" }, vim.bo.filetype) then
+            vim.cmd("EslintFixAll")
+          else
+            vim.lsp.buf.format()
+          end
+        end, opts)
       end
 
       local capabilities = cmp_nvim_lsp.default_capabilities()
