@@ -1,20 +1,17 @@
 return {
   {
     "williamboman/mason.nvim",
-    version = "1.*",
     opts = {},
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
-    version = "1.*",
     opts = {
       ensure_installed = {
         "html",
         "emmet_language_server",
         "typos_lsp",
         "cssls",
-        "dockerls",
         "bashls",
         "pylsp",
         "vimls",
@@ -22,6 +19,9 @@ return {
         "eslint",
         "ts_ls",
         "volar",
+      },
+      version = {
+        ["vue-language-server"] = "v2.2.8",
       },
     },
   },
@@ -34,8 +34,6 @@ return {
     },
     config = function()
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
-      local lspconfig = require("lspconfig")
-
       local opts = { noremap = true, silent = true }
 
       local on_attach = function(client, bufnr)
@@ -63,18 +61,12 @@ return {
         vim.keymap.set("n", "<leader>rs", ":LspRestart<cr>", opts)
 
         opts.desc = "Format code"
-        vim.keymap.set("n", "<leader>f", function()
-          if vim.tbl_contains({ "javascript", "typescript", "vue" }, vim.bo.filetype) then
-            vim.cmd("EslintFixAll")
-          else
-            vim.lsp.buf.format()
-          end
-        end, opts)
+        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
       end
 
       local capabilities = cmp_nvim_lsp.default_capabilities()
 
-      lspconfig.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
@@ -83,7 +75,7 @@ return {
             local path = client.workspace_folders[1].name
             if
                 path ~= vim.fn.stdpath("config")
-                and (vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc"))
+                and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
             then
               return
             end
@@ -120,7 +112,7 @@ return {
           },
         },
       })
-      lspconfig.eslint.setup({
+      vim.lsp.config('eslint', {
         handlers = handlers,
         on_attach = on_attach,
         settings = {
@@ -141,22 +133,22 @@ return {
             useFlatConfig = false
           },
           format = true,
-          nodePath = "",
           onIgnoredFiles = "off",
+          nodePath = "",
           problems = {
             shortenToSingleLine = false
           },
           quiet = false,
-          rulesCustomizations = {},
           run = "onType",
           useESLintClass = false,
           validate = "on",
           workingDirectory = {
             mode = "location"
-          }
+          },
         }
       })
-      lspconfig.ts_ls.setup({
+
+      vim.lsp.config('ts_ls', {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
@@ -164,9 +156,8 @@ return {
           plugins = {
             {
               name = "@vue/typescript-plugin",
-              location = vim.fn.stdpath("data")
-                  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-              languages = { "javascript", "typescript", "vue" },
+              location = vim.fn.trim(vim.fn.system('npm root -g')) .. '/@vue/typescript-plugin',
+              languages = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
             },
           },
           settings = {
@@ -197,17 +188,20 @@ return {
           "vue",
         },
       })
-      lspconfig.volar.setup({
+      vim.lsp.config('volar', {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
+        filetypes = { "vue" },
         init_options = {
           vue = {
+            version = 2,
             hybridMode = true,
           },
         },
         settings = {
           typescript = {
+            tsdk = vim.fn.trim(vim.fn.system('npm root -g')) .. '/typescript/lib',
             inlayHints = {
               enumMemberValues = {
                 enabled = true,
@@ -222,66 +216,58 @@ return {
                 enabled = true,
                 suppressWhenArgumentMatchesName = true,
               },
+              parameterNames = {
+                enabled = true,
+                suppressWhenArgumentMatchesName = true,
+              },
               variableTypes = {
                 enabled = true,
               },
             },
           },
         },
+        root_dir = function()
+          return vim.loop.os_homedir()
+        end,
       })
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        handlers = handlers,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--clang-tidy",
-          "--log=verbose",
-        },
-      })
-      lspconfig.typos_lsp.setup({
+      vim.lsp.config('typos_lsp', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
       })
-      lspconfig.html.setup({
+      vim.lsp.config('html', {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "html", "vue", "templ", "jsx", "svelte" },
       })
-      lspconfig.emmet_language_server.setup({
+      vim.lsp.config('emmet_language_server', {
         handlers = handlers,
         on_attach = on_attach,
         capabilities = capabilities,
+        { "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "typescriptreact", "htmlangular", "vue" }
       })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        handlers = handlers,
-      })
-      lspconfig.jdtls.setup({
+      vim.lsp.config('cssls', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
       })
-      lspconfig.dockerls.setup({
+      vim.lsp.config('dockerls', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
       })
-      lspconfig.bashls.setup({
+      vim.lsp.config('bashls', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
       })
-      lspconfig.pylsp.setup({
+      vim.lsp.config('pylsp', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
       })
-      lspconfig.vimls.setup({
+      vim.lsp.config('vimls', {
         capabilities = capabilities,
         on_attach = on_attach,
         handlers = handlers,
