@@ -5,9 +5,6 @@ PS1='\[$(tput setaf 130)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 7)\]\h \[$(tput s
 
 # alias
 
-# Use NVIM
-alias nvim="~/.local/bin/nvim-linux64/bin/nvim"
-
 # custom bash behavior
 alias ls="ls --color=auto"
 alias la="ls -a"
@@ -23,3 +20,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export KUBECONFIG=~/.kube/config
 . <(kubectl completion bash)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
