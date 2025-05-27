@@ -1,14 +1,14 @@
-local filetypes = { "dockerfile" }
+---
+--- Configuration for Docker Language Server (dockerls)
+--- Provides LSP support for Dockerfiles.
+---
 return {
   'neovim/nvim-lspconfig',
-  ft = filetypes,
   opts = {
-    servers = {
-      dockerls = {
-        languageserver = {
-          formatter = {
-            ignoreMultilineInstructions = true,
-          },
+    dockerls = {
+      languageserver = {
+        formatter = {
+          ignoreMultilineInstructions = true,
         },
       },
     },

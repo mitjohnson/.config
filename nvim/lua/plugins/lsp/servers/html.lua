@@ -1,15 +1,15 @@
-local filetyples = { "html", "templ" }
+---
+--- Configuration for the HTML language server. (html)
+--- Provides support for HTML, HTMLOutline, and Vue files.
+---
 return {
-  "neovim/nvim-lspconfig",
-  ft = filetyples,
+  'neovim/nvim-lspconfig',
   opts = {
-    servers = {
-      html = {
-        init_options = {
-          provideFormatter = false,
-        },
-      }
+    html = {
+      init_options = {
+        provideFormatter = false,
+      },
+      filetypes = { 'html', 'htmldjango', 'django-html', 'vue' },
     },
-  }
+  },
 }
-

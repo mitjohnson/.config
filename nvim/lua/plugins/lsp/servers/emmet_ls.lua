@@ -1,23 +1,20 @@
-local filetypes = {
-  "css",
-  "eruby",
-  "html",
-  "htmldjango",
-  "javascriptreact",
-  "less",
-  "pug",
-  "sass",
-  "scss",
-  "typescriptreact",
-  "htmlangular",
-  "vue",
-}
+---
+--- Configuration for Emmet Language Server (emmet_language_server)
+--- Provides LSP support for Emmet abbreviations in various file types.
+---
 return {
   'neovim/nvim-lspconfig',
-  ft = filetypes,
   opts = {
-    servers = {
-      emmet_language_server = {},
+    emmet_language_server = {
+      filetyoes = {
+        'html',
+        'css',
+        'scss',
+        'less',
+        'vue',
+        'javascriptreact',
+        'typescriptreact',
+      },
     },
   },
 }

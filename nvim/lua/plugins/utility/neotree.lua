@@ -1,37 +1,37 @@
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",
+  'nvim-neo-tree/neo-tree.nvim',
+  branch = 'v3.x',
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    "MunifTanjim/nui.nvim",
+    'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons',
+    'MunifTanjim/nui.nvim',
   },
   init = function()
-    vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", {})
+    vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>', {})
   end,
   opts = {
     event_handlers = {
 
       {
-        event = "file_open_requested",
+        event = 'file_open_requested',
         handler = function()
-          require("neo-tree.command").execute({ action = "close" })
+          require('neo-tree.command').execute({ action = 'close' })
         end,
       },
     },
     git_status = {
       symbols = {
         -- Change type
-        added = "",
-        modified = "",
-        deleted = "✖",
-        renamed = "󰁕",
+        added = '',
+        modified = '',
+        deleted = '✖',
+        renamed = '󰁕',
         -- Status type
-        untracked = "",
-        ignored = "",
-        unstaged = "󰄱",
-        staged = "",
-        conflict = "",
+        untracked = '',
+        ignored = '',
+        unstaged = '󰄱',
+        staged = '',
+        conflict = '',
       },
     },
     filesystem = {
@@ -40,7 +40,7 @@ return {
         hide_dotfiles = false,
         hide_gitignored = true,
         hide_by_name = {
-          "node_modules",
+          'node_modules',
         },
       },
       commands = {
@@ -62,7 +62,9 @@ return {
 
           -- remove neo tree buffer
           if not open then
-            sidebar.file_selector:remove_selected_file('neo-tree filesystem [1]')
+            sidebar.file_selector:remove_selected_file(
+              'neo-tree filesystem [1]'
+            )
           end
         end,
       },
