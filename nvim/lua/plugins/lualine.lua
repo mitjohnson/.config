@@ -15,8 +15,19 @@ return {
         -- Set it to the lualine section you want to use
         hl_group = 'lualine_c_normal',
       })
+      -- Custom function to show macro recording status
+      ---@type fun(): string | nil
+      local function macro_recording()
+        ---@type string.buffer.data
+        local recording_register = vim.fn.reg_recording()
+        if recording_register ~= '' then
+          return '%#ErrorMsg#Recording @' .. recording_register .. '%*'
+        end
+        return ''
+      end
+
       opts.sections = vim.tbl_deep_extend('force', {
-        lualine_a = { 'mode' },
+        lualine_a = { 'mode', macro_recording }, -- Add macro recording status to lualine_a
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
           {
