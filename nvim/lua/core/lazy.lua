@@ -32,6 +32,7 @@ vim.g.maplocalleader = '\\'
 require('lazy').setup({
   spec = {
     -- import your plugins
+    { import = 'core.keymaps' },
     { import = 'plugins' },
     { import = 'plugins.lsp' },
     { import = 'plugins.utility.ai' },

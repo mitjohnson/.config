@@ -1,3 +1,5 @@
+---@module 'conform-nvim'
+
 local utils = require('utils')
 
 return {
@@ -55,6 +57,7 @@ return {
         end,
       }
     end
+
     require('conform').setup({
       formatters = formatters,
       formatters_by_ft = {

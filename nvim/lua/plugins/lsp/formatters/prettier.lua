@@ -1,5 +1,5 @@
 ---
---- Configutation for the prettier formatter.
+--- Configuration for the prettier formatter.
 ---
 return {
   'stevearc/conform.nvim',

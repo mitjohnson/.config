@@ -5,7 +5,7 @@ return {
   'stevearc/conform.nvim',
   opts = {
     shfmt = {
-      config = false, -- no config files avalilable for shfmt
+      config = false, -- no config files available for shfmt
       prepend_args = { '-i', '2', '-ci', '-sr', '-bn' }, -- tabs, indent, and other formatting options
     },
   },

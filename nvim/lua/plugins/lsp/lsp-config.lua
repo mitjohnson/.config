@@ -1,3 +1,6 @@
+---@module 'nvim-lspconfig'
+---@module 'mason.nvim'
+
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile', 'BufWritePre' },

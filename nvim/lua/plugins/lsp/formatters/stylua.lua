@@ -1,5 +1,5 @@
 ---
---- Configuration for the lua formatter (stylua).
+--- Configuration for the Lua formatter (stylua).
 ---
 return {
   'stevearc/conform.nvim',

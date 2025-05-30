@@ -1,10 +1,7 @@
+---@module 'nvim-cmp'
+---@module 'copilot_cmp'
+
 return {
-  {
-    'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-  },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -14,6 +11,7 @@ return {
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
+      { 'zbirenbaum/copilot-cmp', config = true },
     },
     config = function()
       local cmp = require('cmp')

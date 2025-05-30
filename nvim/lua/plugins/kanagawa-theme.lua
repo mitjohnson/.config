@@ -1,6 +1,8 @@
+---@module 'kanagawa'
 return {
   'rebelot/kanagawa.nvim',
-
+  lazy = false, -- load the plugin immediately
+  priority = 1000, -- set high priority to load before other plugins
   opts = {
     compile = false, -- enable compiling the colorscheme
     undercurl = true, -- enable undercurls

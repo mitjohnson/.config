@@ -1,3 +1,5 @@
+---@module 'avante.nvim'
+
 return {
   'yetone/avante.nvim',
   lazy = true,
@@ -22,4 +24,8 @@ return {
       ft = { 'markdown', 'Avante' },
     },
   },
+  init = function()
+    local wk = require('which-key')
+    wk.add({ '<leader>a', group = 'avante' })
+  end,
 }
