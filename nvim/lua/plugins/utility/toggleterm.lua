@@ -1,5 +1,11 @@
+---@module 'toggleterm'
+
 return {
   'akinsho/toggleterm.nvim',
+  lazy = true,
+  keys = {
+    { '<C-\\>', '<cmd>ToggleTerm<CR>', desc = 'Toggle Terminal' },
+  },
   opts = {
     size = 20,
     open_mapping = [[<c-\>]],

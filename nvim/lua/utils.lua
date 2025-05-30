@@ -5,12 +5,13 @@
 local M = {}
 
 ---@type string
---- The location of global configuration files.
+---@brief The location of global configuration files.
+-- The location of global configuration files.
 M.configs_location = vim.fn.stdpath('config') .. '/configs/'
 
 ---@param location string The directory path to start searching from.
 ---@param config_names string[] A list of configuration file names to search for.
----Returns `true` if any local configuration files are found, otherwise `false`.
+---@returns boolean
 function M.has_local_config(location, config_names)
   for _, name in ipairs(config_names) do
     local found = vim.fs.find(name, { upward = true, path = location })
