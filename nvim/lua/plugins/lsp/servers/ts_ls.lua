@@ -1,46 +1,22 @@
-local filetypes = {
-  "javascript",
-  "javascriptreact",
-  "javascript.jsx",
-  "typescript",
-  "typescriptreact",
-  "typescript.tsx",
-  "vue",
-}
+---
+--- Confiuration for the TypeScript Language Server (ts_ls) with Vue support.
+--- Provides LSP support for TypeScript, JavaScript, and Vue files.
+---
 return {
-  "neovim/nvim-lspconfig",
-  ft = filetypes,
+  'neovim/nvim-lspconfig',
   opts = {
-    servers = {
-      ts_ls = {
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = vim.fn.trim(vim.fn.system('npm root -g')) .. '/@vue/typescript-plugin',
-              languages = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
-            },
-          },
-          settings = {
-            typescript = {
-              tsserver = {
-                useSyntaxServer = false,
-              },
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
+    ts_ls = {
+      init_options = {
+        plugins = {
+          {
+            name = '@vue/typescript-plugin',
+            location = vim.fn.trim(vim.fn.system('npm root -g'))
+              .. '/@vue/typescript-plugin', -- Path to the global Vue/TypeScript plugin
+            languages = { 'javascript', 'typescript', 'vue' },
           },
         },
       },
-      filetypes = filetypes,
+      filetypes = { 'javascript', 'typescript', 'vue' },
     },
   },
 }

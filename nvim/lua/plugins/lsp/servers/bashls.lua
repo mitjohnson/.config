@@ -1,13 +1,13 @@
-local filetypes = {"bash", "sh"}
+---
+--- Configuration for Bash Language Server (bashls)
+--- Provides LSP support for Bash scripts.
+---
 return {
-  "neovim/nvim-lspconfig",
-  ft = filetypes,
+  'neovim/nvim-lspconfig',
   opts = {
-    servers = {
-      bashls = {
-        init_options = {
-          provideFormatter = false,
-        },
+    bashls = {
+      init_options = {
+        provideFormatter = false, -- Disable formatting support; use external formatters instead.
       },
     },
   },
