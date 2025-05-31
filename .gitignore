@@ -1,3 +1,4 @@
+dolphinrc
 tmux/plugins/*
 matplotlib/
 /helm
@@ -5,4 +6,15 @@ matplotlib/
 iterm2/
 p/
 op/
+BraveSoftware/
+go/
+session/
+systemd/
+gtk*
+kde.org/
+yay/
+hypr/
+dconf/
+kwalletrc
 nvim/lazy-lock.json
+
