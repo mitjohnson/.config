@@ -1317,7 +1317,7 @@
 
 #: The foreground and background colors.
 
-# background_opacity 1.0
+background_opacity 0.9
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -1921,7 +1921,7 @@
 
 #: OS specific tweaks {{{
 
-# wayland_titlebar_color system
+wayland_titlebar_color system
 
 #: The color of the kitty window's titlebar on Wayland systems with
 #: client side window decorations such as GNOME. A value of system
@@ -2783,3 +2783,9 @@
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_THEME
+# Kanagawa
+include current-theme.conf
+# END_KITTY_THEME
