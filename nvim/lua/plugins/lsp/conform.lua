@@ -73,6 +73,7 @@ return {
         lua = { 'stylua' },
         bash = { 'shfmt' },
         sh = { 'shfmt' },
+        python = { 'black' },
       },
     })
   end,

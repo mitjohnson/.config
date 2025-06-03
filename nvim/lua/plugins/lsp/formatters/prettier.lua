@@ -4,7 +4,7 @@
 return {
   'stevearc/conform.nvim',
   opts = {
-    prettierd = {
+    prettier = {
       config = true,
       config_command = '--check --config ', -- Attempts to respect Eslint, provides fallback to global prettier config
       config_names = {
