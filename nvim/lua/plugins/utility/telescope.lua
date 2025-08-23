@@ -8,6 +8,7 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-fzf-native.nvim',
       'nvim-tree/nvim-web-devicons',
+      'nvim-telescope/telescope-project.nvim',
       {
         'nvim-telescope/telescope-ui-select.nvim',
         opts = {
@@ -26,9 +27,11 @@ return {
       { '<leader>fb', builtin.buffers, desc = 'Find Buffers' },
       { '<leader>fh', builtin.help_tags, desc = 'Help Tags' },
       { '<leader>fc', builtin.commands, desc = 'Commands' },
+      { '<leader>fp', '<CMD>Telescope project<CR>', desc = 'Projects' },
     },
     init = function()
       require('telescope').load_extension('ui-select')
+      require('telescope').load_extension('project')
     end,
   },
 }

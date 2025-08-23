@@ -10,10 +10,6 @@ return {
       { '<C-l>', '<C-w>>', desc = 'Increase window width' },
       { '<C-j>', '<C-w>-', desc = 'Decrease window height' },
       { '<C-k>', '<C-w>+', desc = 'Increase window height' },
-      { '<leader>h', '<C-w>h', desc = 'Move to the left window' },
-      { '<leader>j', '<C-w>j', desc = 'Move to the window below' },
-      { '<leader>k', '<C-w>k', desc = 'Move to the window above' },
-      { '<leader>l', '<C-w>l', desc = 'Move to the right window' },
       { '<leader>tn', ':tabnext<CR>', desc = 'Next tab' },
       { '<leader>tp', ':tabprevious<CR>', desc = 'Previous tab' },
       { '<leader>tl', ':tablast<CR>', desc = 'Last tab' },
@@ -21,6 +17,7 @@ return {
       { '<leader>tc', ':tabclose<CR>', desc = 'Close current tab' },
       { '<leader>to', ':tabnew<CR>', desc = 'Open a new tab' },
       { '<leader>rn', vim.lsp.buf.rename, desc = 'LSP: Smart rename' },
+      { '<leader>l', '<cmd>LspEslintFixAll<cr>', desc = 'LSP: Apply ESLint' },
       {
         'K',
         '<cmd>lua require("noice.lsp").hover()<cr>',

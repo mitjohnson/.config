@@ -43,7 +43,7 @@ require('lazy').setup({
   -- Configure any other settings here. See the documentation for more details.
   -- color scheme that will be used when installing plugins.
   -- automatically check for plugin updates
-  install = { colorscheme = { 'habamax' } },
+  install = { colorscheme = { 'kanagawa-dragon' } },
   checker = { enabled = true },
   ui = {
     border = 'rounded',
