@@ -7,11 +7,13 @@ return {
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',
+      'mfussenegger/nvim-dap-python',
     },
     config = function()
       local dap = require('dap')
       local dapui = require('dapui')
       local wk = require('which-key')
+      local dap_python = require('dap-python')
 
       dap.defaults.fallback.exception_breakpoints = { 'uncaught' }
 
@@ -96,6 +98,8 @@ return {
           max_value_lines = 100,
         },
       })
+
+      dap_python.setup('python3')
 
       for _, adapterType in ipairs({ 'node', 'chrome', 'msedge' }) do
         local pwaType = 'pwa-' .. adapterType

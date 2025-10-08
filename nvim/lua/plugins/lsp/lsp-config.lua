@@ -34,7 +34,7 @@ return {
 
     for server, settings in pairs(opts) do
       settings.capabilities = capabilities
-      vim.lsp.config(server, settings)
+      vim.lsp.config(server, settings or {})
       vim.lsp.enable(server)
     end
 
