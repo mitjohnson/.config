@@ -6,7 +6,7 @@
 return {
   'neovim/nvim-lspconfig',
   opts = {
-    pylsp = {
+    pyright = {
       plugins = {
         autopep8 = { enabled = false },
         flake8 = { enabled = true },
