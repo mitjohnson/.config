@@ -1,3 +1,10 @@
 [user]
 	email = 91237766+boring-jpg@users.noreply.github.com
 	name = mitchell
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPn4BycnmNcJhZaZFFadmvt8y1NBBotcBuY93bUdAvik
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign
+[commit]
+	gpgsign = true
